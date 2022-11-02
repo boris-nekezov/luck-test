@@ -1,0 +1,16 @@
+{
+  "name": "root",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^6.0.1"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "start": "lerna run start --scope @luck-test/client --scope @luck-test/server",
+    "story": "lerna run start --scope=@luck-test/ui-kit",
+    "build": "lerna run build",
+    "test": "lerna run test"
+  }
+}
