@@ -1,0 +1,116 @@
+@import '../../styles/app.scss';
+
+.bread-crumbs {
+  @include theme-switcher() {
+    &__wrapper {
+      color: $text-color--light;
+    }
+
+    &__step {
+      &_wrapper {
+        &::before, &::after {
+          background-color: $bread-crumbs-connector-color--light;
+        }
+      }
+
+      &_content {
+        background-color: $bread-crumbs-item-background-color--light;
+        border-color: $border-color--light;
+
+        &--current::after {
+          background-color: $active-primary-color--light;
+        }
+
+        &--succeeded {
+          border-color: $active-primary-color--light;
+          color: $active-primary-color--light;
+        }
+  
+        &--failed {
+          border-color: $active-secondary-color--light;
+          color: $active-secondary-color--light;
+        }
+      }
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    color: $text-color--dark;
+  }
+
+  &__step {
+    $step-item-size: 2rem;
+    $step-item--current-size: 1rem;
+    $connector-height: 0.4rem;
+    $connector-border-radius: calc($connector-height / 2);
+
+    &_wrapper {
+      display: flex;
+      align-items: center;
+
+      &::before, &::after {
+        content: '';
+        height: $connector-height;
+        width: 0.5rem;
+        background-color: $bread-crumbs-connector-color--dark;
+      }
+
+      &::before {
+        margin-right: 0.2rem;
+        border-radius: 0 $connector-border-radius $connector-border-radius 0;
+      }
+
+      &::after {
+        margin-left: 0.2rem;
+        border-radius: $connector-border-radius 0 0 $connector-border-radius;
+      }
+    }
+
+    &_content {
+      position: relative;
+      background-color: $bread-crumbs-item-background-color--dark;
+      border: 2px solid $border-color--light;
+      width: $step-item-size;
+      height: $step-item-size;
+      font-weight: 900;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &, &--current::after {
+        box-sizing: border-box;
+        border-radius: 50%;
+      }
+
+      &--current::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: $step-item--current-size;
+        height: $step-item--current-size;
+        background-color: $active-primary-color--dark;
+      }
+
+      &--succeeded {
+        border-color: $active-primary-color--dark;
+        color: $active-primary-color--dark;
+      }
+
+      &--failed {
+        border-color: $active-secondary-color--dark;
+        color: $active-secondary-color--dark;
+      }
+
+      > svg {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+  }
+}

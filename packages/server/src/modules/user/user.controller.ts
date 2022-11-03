@@ -17,7 +17,7 @@ import {
 import { JwtAuthGuard } from '../auth/jwt.guard';
 import { AuthService } from '../auth/auth.service';
 import { LocalAuthGuard } from '../auth/local.guard';
-import { RegisterUserDTO } from '../../DTOs/user.dto';
+import { RegisterUser } from '../../entities/registerUser.entity';
 import { UserService } from './user.service';
 import { UserProfileInterceptor } from '../../interceptors/userProfile.interceptor';
 import { UserInfo } from '../../entities/userInfo.entity';
@@ -43,8 +43,8 @@ export class UsertController {
     description: 'User is already exist',
   })
   @UseInterceptors(UserProfileInterceptor)
-  register(@Body() registerUserDTO: RegisterUserDTO) {
-    return this.userService.createUser(registerUserDTO);
+  register(@Body() registerUser: RegisterUser) {
+    return this.userService.createUser(registerUser);
   }
 
   @Post('login')
@@ -54,7 +54,7 @@ export class UsertController {
     description: 'Bearer token',
     type: LoginResponse,
   })
-  @ApiBody({ type: RegisterUserDTO })
+  @ApiBody({ type: RegisterUser })
   @UseGuards(LocalAuthGuard)
   login(@Request() req) {
     return this.authService.login(req.user);

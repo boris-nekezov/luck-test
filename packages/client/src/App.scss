@@ -1,9 +1,5 @@
-@import "@luck-test/ui-kit/lib/styles/app.scss";
+@import "@luck-test/ui-kit/src/styles/app.scss";
 
 .App {
   text-align: center;
-  
-  @include theme-switcher() {
-    background-color: $test-color;
-  }
 }

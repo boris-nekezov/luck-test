@@ -5,11 +5,13 @@ import {
   CallHandler,
 } from '@nestjs/common';
 import { map } from 'rxjs/operators';
-import { userDocumentToUserResponce } from '../mappers/user.mappers';
+import { UserMapper } from '../mappers/user.mappers';
 
 @Injectable()
 export class UserProfileInterceptor implements NestInterceptor {
+  constructor(private readonly userMapper: UserMapper) {}
+
   intercept(context: ExecutionContext, next: CallHandler) {
-    return next.handle().pipe(map(userDocumentToUserResponce));
+    return next.handle().pipe(map(this.userMapper.toUserResponce));
   }
 }

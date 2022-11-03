@@ -1,0 +1,16 @@
+{
+  "name": "@luck-test/contracts",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "description": "",
+  "author": "",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "rollup --config"
+  },
+  "devDependencies": {
+    "rollup-plugin-typescript2": "^0.34.1"
+  }
+}

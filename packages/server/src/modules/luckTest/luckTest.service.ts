@@ -5,20 +5,25 @@ import {
   GetIteratorException,
   GetResultException,
 } from '../../Exceptions/luckTest.exceptions';
-import { GiveAnswerDTO } from '../../DTOs/luckTest.dto';
+import { GiveAnswer } from '../../entities/giveAnswer.enity';
 import { LuckTest, LuckTestDocument } from '../../schemas/luckTest.schema';
+import { LuckTestEtolonCreator } from './luckTestEtolonCreator.service';
 
 @Injectable()
 export class LuckTestService {
   constructor(
+    private readonly luckTestEtolonCreator: LuckTestEtolonCreator,
     @InjectModel(LuckTest.name) private luckTestModel: Model<LuckTestDocument>,
   ) {}
 
   createTest(userId: string, length: number): Promise<LuckTestDocument> {
+    const currentDate = new Date().toISOString();
+
     const createdTest = new this.luckTestModel({
       user: userId,
-      dateOfCreation: new Date().toISOString(),
-      etolon: Array.from({ length }).map(() => Math.random() >= 0.5),
+      createdAt: currentDate,
+      updatedAt: currentDate,
+      etolon: this.luckTestEtolonCreator.generate(length),
       answers: [],
     });
 
@@ -35,15 +40,13 @@ export class LuckTestService {
     return this.luckTestModel.findById(testId).exec();
   }
 
-  async giveAnswer(
-    luckTestDocument: LuckTestDocument,
-    giveAnswerDTO: GiveAnswerDTO,
-  ) {
+  async giveAnswer(luckTestDocument: LuckTestDocument, giveAnswer: GiveAnswer) {
     if (luckTestDocument.answers.length >= luckTestDocument.etolon.length) {
       throw new GetIteratorException();
     }
 
-    luckTestDocument.answers.push(giveAnswerDTO.answer);
+    luckTestDocument.answers.push(giveAnswer.answer);
+    luckTestDocument.updatedAt = new Date().toISOString();
 
     return luckTestDocument.save();
   }
