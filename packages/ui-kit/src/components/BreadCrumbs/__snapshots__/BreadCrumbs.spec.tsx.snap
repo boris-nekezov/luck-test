@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given \`BreadCrumbs\` component when it is rendered should match snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="bread-crumbs bread-crumbs__wrapper"
+    >
+      <div
+        class="bread-crumbs__step_wrapper"
+      >
+        <div
+          class="bread-crumbs__step_content bread-crumbs__step_content--succeeded"
+        >
+          <check-solid.svg />
+        </div>
+      </div>
+      <div
+        class="bread-crumbs__step_wrapper"
+      >
+        <div
+          class="bread-crumbs__step_content bread-crumbs__step_content--failed"
+        >
+          <cross-solid.svg />
+        </div>
+      </div>
+      <div
+        class="bread-crumbs__step_wrapper"
+      >
+        <div
+          class="bread-crumbs__step_content bread-crumbs__step_content--succeeded"
+        >
+          <check-solid.svg />
+        </div>
+      </div>
+      <div
+        class="bread-crumbs__step_wrapper"
+      >
+        <div
+          class="bread-crumbs__step_content bread-crumbs__step_content--current"
+        />
+      </div>
+      <div
+        class="bread-crumbs__step_wrapper"
+      >
+        <div
+          class="bread-crumbs__step_content"
+        />
+      </div>
+    </div>
+  </div>
+</body>
+`;

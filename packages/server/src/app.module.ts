@@ -11,7 +11,7 @@ import { AuthModule } from './modules/auth/auth.module';
     AuthModule,
     UserModule,
     LuckTestModule,
-    MongooseModule.forRoot('mongodb://localhost:27017', {
+    MongooseModule.forRoot('mongodb://127.0.0.1:27017', {
       dbName: 'luck-test-db',
     }),
   ],

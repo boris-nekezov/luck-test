@@ -1,35 +1,16 @@
-const path = require("path");
-
-const assetsFolder = path.resolve(__dirname, '../lib/assets');
-
 module.exports = {
-  stories: [
-    "../lib/**/*.stories.@(ts|tsx)"
+  "stories": [
+    "../src/**/*.stories.@(js|jsx|ts|tsx)"
   ],
-  addons: [
+  "addons": [
+    "storybook-addon-themes",
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "storybook-addon-sass-postcss",
-    "@storybook/addon-interactions"
+    "@storybook/addon-interactions",
+    "@storybook/preset-create-react-app"
   ],
-  framework: "@storybook/react",
-  webpackFinal: (config) => {
-    const rules = config.module.rules;
-
-    const fileLoaderRule = rules.find(rule => rule.test.test('.svg'));
-    fileLoaderRule.exclude = assetsFolder;
-    
-    rules.push({
-      test: /\.svg$/,
-      include: assetsFolder,
-      use: [{
-        loader: '@svgr/webpack',
-        options: {
-          icon: true,
-        },
-      }],
-    });
-
-    return config;
-  },
+  "framework": "@storybook/react",
+  "core": {
+    "builder": "@storybook/builder-webpack5"
+  }
 }

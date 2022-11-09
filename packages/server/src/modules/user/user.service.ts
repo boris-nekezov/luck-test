@@ -2,21 +2,21 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User, UserDocument } from '../../schemas/user.schema';
-import { RegisterUserDTO } from '../../DTOs/user.dto';
+import { RegisterUser } from '../../entities/registerUser.entity';
 import { UserIsExistException } from '../../Exceptions/user.exceptions';
 
 @Injectable()
 export class UserService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  async createUser(registerUserDto: RegisterUserDTO): Promise<User> {
-    const existedUser = await this.getUser(registerUserDto.login);
+  async createUser(registerUser: RegisterUser): Promise<User> {
+    const existedUser = await this.getUser(registerUser.login);
 
     if (existedUser) {
       throw new UserIsExistException();
     }
 
-    const createdUser = new this.userModel(registerUserDto);
+    const createdUser = new this.userModel(registerUser);
 
     return createdUser.save();
   }

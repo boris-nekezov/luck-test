@@ -1,7 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { LuckTestStatus } from '../types/luckTest.types';
+import { LuckTestStatus } from '@luck-test/contracts';
+import { ILuckTestResult } from '@luck-test/contracts';
 
-export class LuckTestResult {
+export class LuckTestResult implements ILuckTestResult {
   @ApiProperty({
     example: '6358032d045f271f13b3bd65',
     description: 'The ID of luck test entity',
@@ -15,6 +16,12 @@ export class LuckTestResult {
   length: number;
 
   @ApiProperty({
+    example: [false, true, false],
+    description: 'List of values show whether particular answer was correct',
+  })
+  areAnswersCorrect: boolean[];
+
+  @ApiProperty({
     example: LuckTestStatus.Done,
     description: 'Shows test is either done or in progress',
     examples: LuckTestStatus,
@@ -26,7 +33,13 @@ export class LuckTestResult {
     example: '2022-10-24T21:14:04.611Z',
     description: 'ISO date string presentation of date of creation',
   })
-  dateOfCreation: string;
+  createdAt: string;
+
+  @ApiProperty({
+    example: '2022-10-24T21:14:04.611Z',
+    description: 'ISO date string presentation of update date',
+  })
+  updatedAt: string;
 
   @ApiProperty({
     example: 4,

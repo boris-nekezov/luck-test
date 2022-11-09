@@ -1,33 +1,43 @@
 import React from 'react';
+import {
+  BrowserRouter,
+  Route,
+  Routes
+} from 'react-router-dom';
+import axios from 'axios';
 
-import { Button, ColorsIcon } from '@luck-test/ui-kit';
+import { useAppSelector } from './app/hooks';
+import { selectLogin, selectPassword } from './features/user/userSlice';
+
+import HomePage from './pages/Home';
 
 import './App.scss';
 
 function App() {
-  const onRequest = async () => {
-    const responce = await fetch('http://localhost:5000/login', { 
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ 
-        "login": "test@gmail.com",
-        "password": "test_Pa$w0rd"
-      }) 
-    });
+  const login = useAppSelector(selectLogin);
+  const password = useAppSelector(selectPassword);
 
-    const result = await responce.json();
+  const onRequest = async () => {
+    const response = axios.post('http://localhost:5000/login', {
+      login,
+      password
+    })
+      .then(res => res.data);
+
+    const result = await response;
 
     console.log(result);
   }
 
   return (
-    <div className="App">
-      <ColorsIcon />
-      <Button label="test" onClick={onRequest}/>
-      Hello World!!!
-    </div>
+    <BrowserRouter>
+      <div className="App" onClick={onRequest}>
+        Hello World!!!
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 

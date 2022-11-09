@@ -19,7 +19,8 @@ import {
 import { JwtAuthGuard } from '../auth/jwt.guard';
 import { LuckTestIteratorInterceptor } from '../../interceptors/luckTestIterator.interceptor';
 import { LuckTestResultInterceptor } from '../../interceptors/luckTestResult.interceptor';
-import { CreateLuckTestDTO, GiveAnswerDTO } from '../../DTOs/luckTest.dto';
+import { CreateLuckTest } from '../../entities/createLuckTest.entity';
+import { GiveAnswer } from '../../entities/giveAnswer.enity';
 import { TestAccessGuard } from './luckTest.guard';
 import { LuckTestService } from './luckTest.service';
 import { LuckTestResult } from '../../entities/testResult.entity';
@@ -40,8 +41,8 @@ export class LuckTestController {
     type: LuckTestResult,
   })
   @UseInterceptors(LuckTestIteratorInterceptor)
-  createTest(@Request() req, @Body() luckTestDTO: CreateLuckTestDTO) {
-    return this.luckTestService.createTest(req.user.userId, luckTestDTO.length);
+  createTest(@Request() req, @Body() luckTest: CreateLuckTest) {
+    return this.luckTestService.createTest(req.user.userId, luckTest.length);
   }
 
   @Get()
@@ -75,8 +76,8 @@ export class LuckTestController {
   })
   @UseGuards(TestAccessGuard)
   @UseInterceptors(LuckTestIteratorInterceptor)
-  giveAnswer(@Request() req, @Body() giveAnswerDTO: GiveAnswerDTO) {
-    return this.luckTestService.giveAnswer(req.luckTest, giveAnswerDTO);
+  giveAnswer(@Request() req, @Body() giveAnswer: GiveAnswer) {
+    return this.luckTestService.giveAnswer(req.luckTest, giveAnswer);
   }
 
   @Get(':testId')

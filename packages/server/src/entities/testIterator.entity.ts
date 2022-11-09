@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { ILuckTestIterator } from '@luck-test/contracts';
 
-export class LuckTestIterator {
+export class LuckTestIterator implements ILuckTestIterator {
   @ApiProperty({
     example: '6358032d045f271f13b3bd65',
     description: 'The ID of luck test entity',
@@ -14,22 +15,14 @@ export class LuckTestIterator {
   length: number;
 
   @ApiProperty({
-    example: 2,
-    description: 'Number of current question in the test user is answering to',
+    example: [true, false, true],
+    description: 'List of answers user sent',
   })
-  currentStep: number;
+  answers: boolean[];
 
   @ApiProperty({
-    example: true,
-    description: 'Value of answer user just sent',
-    required: false,
+    example: [false, true, false],
+    description: 'List of values show whether particular answer was correct',
   })
-  currentAnswer?: boolean;
-
-  @ApiProperty({
-    example: true,
-    description: 'Shows whether user has sent correctly guessed answer',
-    required: false,
-  })
-  isCorrect?: boolean;
+  areAnswersCorrect: boolean[];
 }

@@ -1,0 +1,5 @@
+@mixin theme-switcher() {
+  @at-root #{selector-nest('body.light', &)} {
+    @content;
+  }
+}

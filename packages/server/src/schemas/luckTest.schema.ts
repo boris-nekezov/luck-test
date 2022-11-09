@@ -16,7 +16,10 @@ export class LuckTest {
   answers: boolean[];
 
   @Prop()
-  dateOfCreation: string;
+  createdAt: string;
+
+  @Prop()
+  updatedAt: string;
 }
 
 export const LuckTestSchema = SchemaFactory.createForClass(LuckTest);
