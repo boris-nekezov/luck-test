@@ -48,4 +48,4 @@ npm test
 
 - ### Link to development server [http://localhost:3000/](http://localhost:3000/)
 - ### Link to Swagger: [http://localhost:5000/swagger](http://localhost:5000/swagger)
-- ### Link: [http://localhost:6006/](http://localhost:6006/)
+- ### Link to storybook: [http://localhost:6006/](http://localhost:6006/)

@@ -1,2 +1,30 @@
 @import './variables.scss';
 @import './mixins.scss';
+
+html {
+	height: 100%;
+
+	body {
+		@include theme-switcher() {
+			#root {
+				.App {
+					color: $text-color--light;
+					background-color: $body-background-color--light;
+				}
+			}
+		}
+
+		height: 100%;
+		margin: 0;
+		font-family: $base-font-family;
+
+		#root {
+			height: 100%;
+			.App {
+				height: 100%;
+				color: $text-color--dark;
+				background-color: $body-background-color--dark;
+			}
+		}
+	}
+}
