@@ -1,0 +1,43 @@
+@import '../../styles/app.scss';
+
+.header {
+	@include theme-switcher() {
+		border-bottom: $space-sm solid $active-primary-color--light;
+	}
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: $space-md;
+	margin-bottom: $space-lg;
+	border-bottom: $space-xs solid $active-primary-color--dark;
+
+	.logo {
+		display: flex;
+		align-items: center;
+		padding: $space-md;
+
+		&__image {
+			width: 60px;
+			height: 60px;
+			margin-right: $space-sm;
+			svg {
+				position: relative;
+				top: 14px;
+				transform: scale(1.8);
+				transform-origin: center;
+			}
+		}
+
+		&__text {
+			&_title {
+				display: block;
+				font-size: $base-font-size-md;
+			}
+			&_slogan {
+				display: block;
+				font-size: $base-font-size-sm;
+			}
+		}
+	}
+}

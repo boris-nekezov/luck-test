@@ -17,6 +17,8 @@ html {
 		height: 100%;
 		margin: 0;
 		font-family: $base-font-family;
+		line-height: 1.1;
+		user-select: none;
 
 		#root {
 			height: 100%;
@@ -27,4 +29,23 @@ html {
 			}
 		}
 	}
+}
+
+h1,
+h2,
+h3 {
+	margin-top: 0;
+}
+
+h1 {
+	font-size: $base-font-size-xl;
+	margin-bottom: $space-md;
+}
+h2 {
+	font-size: $base-font-size-lg;
+	margin-bottom: $space-md;
+}
+h3 {
+	font-size: $base-font-size-md;
+	margin-bottom: $space-sm;
 }

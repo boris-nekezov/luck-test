@@ -1,4 +1,5 @@
 // components
+export * from './components/Header';
 export * from './components/BreadCrumbs';
 export * from './components/Input';
 

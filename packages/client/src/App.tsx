@@ -11,7 +11,7 @@ import { selectLogin, selectPassword } from './features/user/userSlice';
 
 import HomePage from './pages/Home';
 
-import { Input } from '@luck-test/ui-kit';
+import { Header, Input } from '@luck-test/ui-kit';
 
 import './App.scss';
 
@@ -38,6 +38,9 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App" onClick={onRequest}>
+        <Header>
+          <h2>NAVIGATION GOES HERE</h2>
+        </Header>
         <Input
           name='test'
           label='test input'

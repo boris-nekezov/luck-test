@@ -1,6 +1,3 @@
-import React from 'react';
-import cn from 'classnames';
-
 import './input.scss';
 
 export interface InputProps {
@@ -24,6 +21,7 @@ export const Input = (props: InputProps) => {
       <label htmlFor={name}>{label}</label>
       <input
         type="text"
+        id={name}
         name={name}
         onChange={handleChange}
         {...spreadAttributes}

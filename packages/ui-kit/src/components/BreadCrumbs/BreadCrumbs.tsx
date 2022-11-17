@@ -12,7 +12,7 @@ export interface BreadCrumbsProps {
 }
 
 export const BreadCrumbs = (props: BreadCrumbsProps) => {
-  const {steps, currentStep} = props;
+  const { steps, currentStep } = props;
 
   return (
     <div className='bread-crumbs bread-crumbs__wrapper'>
