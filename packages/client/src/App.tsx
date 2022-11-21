@@ -11,7 +11,7 @@ import { selectLogin, selectPassword } from './features/user/userSlice';
 
 import HomePage from './pages/Home';
 
-import { Header, Input } from '@luck-test/ui-kit';
+import { Header } from '@luck-test/ui-kit';
 
 import './App.scss';
 
@@ -31,21 +31,12 @@ function App() {
     console.log(result);
   }
 
-  const handleChange = (e: { target: HTMLInputElement }) => {
-    console.log(e.target.value);
-  };
-
   return (
     <BrowserRouter>
       <div className="App" onClick={onRequest}>
         <Header>
           <h2>NAVIGATION GOES HERE</h2>
         </Header>
-        <Input
-          name='test'
-          label='test input'
-          handleChange={handleChange}
-        />
         <Routes>
           <Route path='/' element={<HomePage />} />
         </Routes>

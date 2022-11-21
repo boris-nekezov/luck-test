@@ -12,6 +12,7 @@ const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
 export const Primary = Template.bind({});
 
 Primary.args = {
+  type: 'email',
   label: 'User email',
   name: 'email',
 };

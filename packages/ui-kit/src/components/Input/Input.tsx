@@ -1,16 +1,20 @@
 import './input.scss';
 
 export interface InputProps {
-  label: string;
-  name: string;
-  handleChange: (e: { target: HTMLInputElement }) => void;
+  type?: string;
+  name?: string;
+  label?: string;
+  placeholder?: string;
+  handleChange?: (e: { target: HTMLInputElement }) => void;
   children?: JSX.Element | JSX.Element[],
 }
 
 export const Input = (props: InputProps) => {
   const {
-    label,
+    type = 'text',
     name,
+    label,
+    placeholder,
     handleChange,
     children,
     ...spreadAttributes
@@ -20,9 +24,10 @@ export const Input = (props: InputProps) => {
     <div className='input'>
       <label htmlFor={name}>{label}</label>
       <input
-        type="text"
+        type={type}
         id={name}
         name={name}
+        placeholder={placeholder}
         onChange={handleChange}
         {...spreadAttributes}
       />
