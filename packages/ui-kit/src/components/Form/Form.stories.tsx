@@ -5,6 +5,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Form } from './Form';
 
 import { Primary } from '../Input/Input.stories';
+import { ButtonBasic } from '../Button/button.stories';
 
 export default {
   title: 'Form',
@@ -15,8 +16,7 @@ const Template: ComponentStory<typeof Form> = (args) => (
   <Form {...args}>
     <Primary {...Primary.args} />
     <Primary {...Primary.args} />
-    {/*// todo replace it with button component */}
-    <button>Submit</button>
+    <ButtonBasic {...ButtonBasic.args} />
   </Form>
 );
 

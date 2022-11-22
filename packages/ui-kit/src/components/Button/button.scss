@@ -1,0 +1,24 @@
+@import '../../styles/app.scss';
+
+.button {
+	@include theme-switcher() {
+		border: 1px solid $border-secondary--light;
+		background: $button-background--light;
+		color: $text-color--light;
+		&:hover {
+			color: $base-color-white;
+			background: $active-primary-color--light;
+		}
+	}
+	padding: 10px 30px;
+	border: 1px solid $border-secondary--dark;
+	border-radius: 5px;
+	background: $base-background--dark;
+	color: $text-color--dark;
+	cursor: pointer;
+	&:hover,
+	&.active {
+		color: $base-color-white;
+		background: $active-secondary-color--dark;
+	}
+}

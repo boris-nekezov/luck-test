@@ -1,4 +1,4 @@
-import { Form, Input } from '@luck-test/ui-kit';
+import { Form, Input, Button } from '@luck-test/ui-kit';
 import React from 'react';
 
 const handleChange = (e: { target: HTMLInputElement }) => {
@@ -28,8 +28,7 @@ const HomePage = () => (
 				placeholder="Enter you password!"
 				handleChange={handleChange}
 			/>
-			{/*// todo this button will be replaced by button component */}
-			<button type='submit'>Submit</button>
+			<Button type='submit'>Submit</Button>
 		</Form>
 	</div>
 );

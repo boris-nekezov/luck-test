@@ -12,8 +12,9 @@ exports[`Given \`Input\` component when it is rendered should match snapshot 1`]
         User email
       </label>
       <input
+        id="email"
         name="email"
-        type="text"
+        type="email"
       />
     </div>
   </div>
