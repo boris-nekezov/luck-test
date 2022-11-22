@@ -9,7 +9,7 @@ import axios from 'axios';
 import { useAppSelector } from './app/hooks';
 import { selectLogin, selectPassword } from './features/user/userSlice';
 
-import HomePage from './pages/Home';
+import HomePage from './pages/Home/Home';
 
 import { Header } from '@luck-test/ui-kit';
 
