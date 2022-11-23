@@ -1,5 +1,5 @@
-import { Form, Input, Button } from '@luck-test/ui-kit';
 import React from 'react';
+import { Form, Input, Button } from '@luck-test/ui-kit';
 
 import './home.scss'
 

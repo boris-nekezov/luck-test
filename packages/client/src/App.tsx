@@ -1,8 +1,7 @@
-import React from 'react';
 import {
   BrowserRouter,
   Route,
-  Routes
+  Routes,
 } from 'react-router-dom';
 import axios from 'axios';
 
@@ -14,6 +13,8 @@ import HomePage from './pages/Home/Home';
 import { Header } from '@luck-test/ui-kit';
 
 import './App.scss';
+import TestsPage from './pages/Tests/Tests';
+import TestPage from './pages/Test/Test';
 
 function App() {
   const login = useAppSelector(selectLogin);
@@ -39,9 +40,13 @@ function App() {
         </Header>
         <Routes>
           <Route path='/' element={<HomePage />} />
+          <Route path='tests'>
+            <Route index element={<TestsPage />} />
+            <Route path=":testId" element={<TestPage />} />
+          </Route>
         </Routes>
       </div>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 }
 
