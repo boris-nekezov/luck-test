@@ -1,11 +1,13 @@
 import { Outlet, Navigate } from 'react-router-dom'
+import { useAppSelector } from '../app/hooks'
 
 const PrivateRoutes = () => {
-  let auth = { 'token': false }
+  const { isAuthenticated } = useAppSelector(state => state.user);
 
   return (
-    auth.token ? <Outlet /> : <Navigate to="/account" />
+    isAuthenticated ? <Outlet /> : <Navigate to="/account" />
   )
+
 }
 
 export default PrivateRoutes;

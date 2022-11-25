@@ -1,48 +1,88 @@
 import { useEffect } from 'react';
-import { Outlet, } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  useNavigate,
+  Navigate,
+  Outlet,
+} from 'react-router-dom';
 import axios from 'axios';
+import { Button } from '@luck-test/ui-kit';
 
-import { useAppSelector } from './app/hooks';
-import { selectLogin, selectPassword } from './features/user/userSlice';
+import HomePage from './pages/Home/Home';
+import AccountPage from './pages/Account/Account';
+import TestsPage from './pages/Tests/Tests';
+import PrivateRoutes from './utils/PrivateRoutes';
+import TestPage from './pages/Test/Test';
+
+import { getUserProfile } from './features/user/userActions';
+import { logout } from './features/user/userSlice';
+import { useAppDispatch, useAppSelector } from './app/hooks';
 
 import { Header } from '@luck-test/ui-kit';
 
 import './App.scss';
 
+
 function App() {
-  const login = useAppSelector(selectLogin);
-  const password = useAppSelector(selectPassword);
+  const { userInfo, isAuthenticated } = useAppSelector((state) => state.user)
+  const dispatch = useAppDispatch();
+
+  const tokenLC = localStorage.getItem('accessToken');
 
   useEffect(() => {
-    console.log('USEEFFECT IN APP COMPONENT!')
-    // todo change later
-    localStorage.setItem('accessToken', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ…2NTd9.cwierroJ1WvFMRW8iFpo-1RaZ33vR0TI75gm9sEaJBI')
-
-    const isThereToken = !!localStorage.getItem('accessToken');
-    console.log('isThereToken>>>', isThereToken);
-
-    console.log('END USEEFFECT IN APP COMPONENT! ========================================')
-  }, [])
-
-  const onRequest = async () => {
-    const response = axios.post('http://localhost:5000/login', {
-      login,
-      password
-    })
-      .then(res => res.data);
-
-    const result = await response;
-
-    console.log(result);
-  }
+    if (tokenLC) {
+      dispatch(getUserProfile())
+    }
+  }, [dispatch, tokenLC]);
 
   return (
-    <div className="App" onClick={onRequest}>
-      <Header>
-        <h2>NAVIGATION GOES HERE</h2>
-      </Header>
+    <div className="App" >
+      <BrowserRouter>
+        <Header>
+          <div className="user-info">
+            <h3>
+              {
+                isAuthenticated ?
+                  `Logged in as ${userInfo?.login}` :
+                  `You're not logged in`
+              }
+            </h3>
+          </div>
+          <div className="cta">
+            {
+              userInfo && (
+                <Button
+                  type='button'
+                  handleClick={() => dispatch(logout())}
+                >Logout</Button>
+              )
+
+            }
+          </div>
+        </Header >
+
+        <Routes>
+
+          <Route path='/' element={<HomePage />} />
+          <Route path='/account' element={<AccountPage />} />
+
+          <Route element={<PrivateRoutes />} >
+
+            <Route path='tests'>
+              <Route index element={<TestsPage />} />
+              <Route path=":testId" element={<TestPage />} />
+            </Route>
+
+          </Route>
+
+
+        </Routes>
+      </BrowserRouter>
+
       <Outlet />
-    </div>
+    </div >
   );
 }
 
