@@ -10,15 +10,15 @@ import {
 import axios from 'axios';
 import { Button } from '@luck-test/ui-kit';
 
-import HomePage from './pages/Home/Home';
 import AccountPage from './pages/Account/Account';
 import TestsPage from './pages/Tests/Tests';
 import PrivateRoutes from './utils/PrivateRoutes';
-import TestPage from './pages/Test/Test';
+import TestDetailPage from './pages/Test/TestDetail';
 
 import { getUserProfile } from './features/user/userActions';
 import { logout } from './features/user/userSlice';
 import { useAppDispatch, useAppSelector } from './app/hooks';
+import { selectUser } from './features/user/userSelectors';
 
 import { Header } from '@luck-test/ui-kit';
 
@@ -26,16 +26,13 @@ import './App.scss';
 
 
 function App() {
-  const { userInfo, isAuthenticated } = useAppSelector((state) => state.user)
+  const { userInfo, isAuthenticated } = useAppSelector(selectUser)
   const dispatch = useAppDispatch();
 
-  const tokenLC = localStorage.getItem('accessToken');
 
   useEffect(() => {
-    if (tokenLC) {
-      dispatch(getUserProfile())
-    }
-  }, [dispatch, tokenLC]);
+    dispatch(getUserProfile())
+  }, [dispatch]);
 
   return (
     <div className="App" >
@@ -65,14 +62,13 @@ function App() {
 
         <Routes>
 
-          <Route path='/' element={<HomePage />} />
           <Route path='/account' element={<AccountPage />} />
 
           <Route element={<PrivateRoutes />} >
 
-            <Route path='tests'>
+            <Route path='/'>
               <Route index element={<TestsPage />} />
-              <Route path=":testId" element={<TestPage />} />
+              <Route path=":testId" element={<TestDetailPage />} />
             </Route>
 
           </Route>

@@ -6,7 +6,6 @@ import { UserState } from './userTypes';
 const initialState: UserState = {
   loading: false,
   userInfo: null, // for user object
-  accessToken: null, // for storing the JWT
   error: null,
   success: false, // for monitoring reg process. 
   isAuthenticated: false,
@@ -21,7 +20,6 @@ export const userSlice = createSlice({
       localStorage.removeItem('accessToken');
       state.loading = false;
       state.userInfo = null;
-      state.accessToken = null;
       state.error = null;
       state.isAuthenticated = false;
     }
@@ -52,7 +50,8 @@ export const userSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.accessToken = payload
+        localStorage.setItem('accessToken', payload);
+        state.isAuthenticated = true;
       })
       .addCase(loginUser.rejected, (state, { payload }) => {
         state.loading = false;
@@ -75,9 +74,6 @@ export const userSlice = createSlice({
 
   },
 })
-
-// export const selectLogin = (state: RootState) => state.user.login;
-// export const selectPassword = (state: RootState) => state.user.password;
 
 export const { logout } = userSlice.actions
 export default userSlice.reducer;

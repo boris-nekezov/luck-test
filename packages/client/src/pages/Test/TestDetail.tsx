@@ -4,10 +4,10 @@ import { Button } from '@luck-test/ui-kit';
 
 import { mockTests, MockTest } from '../../data/tests.mock';
 
-import './test.scss'
+import './test-detail.scss'
 // all state and structure will be updated at a later point 
 // this is just for implementing and testing basic routing mechanism
-const TestPage = () => {
+const TestDetailPage = () => {
 	const [test, setTest] = useState<MockTest>();
 	const params = useParams();
 	const navigate = useNavigate();
@@ -15,7 +15,8 @@ const TestPage = () => {
 	useEffect(() => {
 		let localTest = mockTests.find(test => test.testId === params.testId);
 		setTest(localTest);
-	}, [params.testId, test, setTest]);
+		// }, [params.testId, test, setTest]);
+	}, [params.testId]);
 
 	return (
 		<div className="test-page">
@@ -34,5 +35,5 @@ const TestPage = () => {
 	)
 };
 
-export default TestPage;
+export default TestDetailPage;
 // TODO REPLACE MOCK TESTS WITH TESTS FROM THE DB

@@ -1,12 +1,8 @@
-export type UserInfo = {
-  login: string;
-  password: string;
-}
+import { IRegisterUser } from "@luck-test/contracts";
 
 export interface UserState {
   loading: boolean;
-  userInfo: UserInfo | null;
-  accessToken: null | string;
+  userInfo: IRegisterUser | null;
   error: unknown;
   success: boolean;
   isAuthenticated: boolean;

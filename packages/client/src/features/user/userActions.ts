@@ -9,15 +9,10 @@ export const registerUser = createAsyncThunk(
   async ({ login, password }: UserRegType, { rejectWithValue }) => {
 
     try {
-
       const response = axios.post(API_URL, {
         login,
         password
-      })
-        .then(res => {
-          return res.data
-        })
-
+      });
       const result = await response;
 
       return result;
@@ -58,6 +53,7 @@ export const getUserProfile = createAsyncThunk(
   'user/getUserProfile',
   async (arg, { rejectWithValue }) => {
     try {
+      console.log('getUserProfile>>try')
       const tokenLC = localStorage.getItem('accessToken');
       const config = {
         headers: {
@@ -69,10 +65,11 @@ export const getUserProfile = createAsyncThunk(
         .then(res => res.data);
 
       const result = await response;
-
+      console.log('getUserProfile>>try>>result', result)
       return result;
 
     } catch (error) {
+      console.log('getUserProfile>>catch')
       if (error instanceof Error) {
         return rejectWithValue(error.message)
       }

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
-import { Form, Input, Button } from '@luck-test/ui-kit';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { registerUser, loginUser } from '../../features/user/userActions';
+import { registerUser, loginUser, getUserProfile } from '../../features/user/userActions';
 
 import './account.scss'
+import SignUp from '../../components/SignUp';
+import LogIn from '../../components/LogIn';
 
 const AccountPage = () => {
 	const dispatch = useAppDispatch();
@@ -54,6 +55,7 @@ const AccountPage = () => {
 		};
 
 		dispatch(registerUser(reqBody));
+
 		if (success) {
 			setState(state => ({
 				...state,
@@ -66,9 +68,10 @@ const AccountPage = () => {
 
 	useEffect(() => {
 		if (isAuthenticated) {
-			navigate('/tests')
+			navigate('/');
+			dispatch(getUserProfile());
 		}
-	}, [isAuthenticated, navigate])
+	}, [isAuthenticated, navigate, dispatch])
 
 	return (
 		<div className="account-page">
@@ -77,46 +80,25 @@ const AccountPage = () => {
 			{success && <h2>Registration is successful! Please log in!</h2>}
 			<div className="account-page__container">
 				<div className="account-page__container_column account-page__container_column--text-right">
-					<Form handleSubmit={handleLogin}>
-						<h2>Log in</h2>
-						<Input
-							type="email"
-							name="emailLogIn"
-							label="Email"
-							placeholder="Enter you email!"
-							handleChange={handleChange}
-						/>
-						<Input
-							type="password"
-							name="passwordLogIn"
-							label="Password"
-							placeholder="Enter you password!"
-							handleChange={handleChange}
-						/>
-						<Button type='submit' disabled={loading}>Log in</Button>
-					</Form>
+					<LogIn
+						handleSubmit={handleLogin}
+						handleChange={handleChange}
+					/>
 				</div>
-				<div className="account-page__container_separator"></div>
-				<div className="account-page__container_column ">
-					<Form handleSubmit={handleSignUp}>
-						<h2>Sign up</h2>
-						<Input
-							type="email"
-							name="emailSignUp"
-							label="Email"
-							placeholder="Enter you email!"
-							handleChange={handleChange}
-						/>
-						<Input
-							type="password"
-							name="passwordSignUp"
-							label="Password"
-							placeholder="Enter you password!"
-							handleChange={handleChange}
-						/>
-						<Button type='submit'>Register</Button>
-					</Form>
-				</div>
+				{
+					// if we successfully make registration hide the separator and register form
+					!success && <>
+						<div className="account-page__container_separator"></div>
+						<div className="account-page__container_column ">
+							<SignUp
+								handleSubmit={handleSignUp}
+								handleChange={handleChange}
+							/>
+						</div>
+					</>
+				}
+
+
 			</div>
 
 
