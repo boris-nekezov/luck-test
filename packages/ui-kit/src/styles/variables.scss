@@ -1,15 +1,42 @@
+// spaces
+$space-xs: 5px;
+$space-sm: 10px;
+$space-md: 20px;
+$space-lg: 50px;
+$space-xl: 100px;
+
+// base colors
+$base-color-white: #fff;
+
 // light theme
+$body-background-color--light: $base-color-white;
 $active-primary-color--light: #6581ff;
 $active-secondary-color--light: #a7accc;
 $text-color--light: #8e8fa3;
 $border-color--light: #dedee6;
+$border-secondary--light: #a2a8cc;
 $bread-crumbs-item-background-color--light: #ffffff;
 $bread-crumbs-connector-color--light: #a1a6c6;
+$input-background--light: $base-color-white;
+$form-background--light: #edf2f6;
+$button-background--light: #e1e8ee;
 
 // dark theme
+$body-background-color--dark: #212429;
+$base-background--dark: #38373d;
+$form-background--dark: #3c3d42;
 $active-primary-color--dark: #8d61ba;
 $active-secondary-color--dark: #ff6269;
 $text-color--dark: #696c75;
 $border-color--dark: #46464e;
+$border-secondary--dark: #6a6d76;
 $bread-crumbs-item-background-color--dark: #39383e;
 $bread-crumbs-connector-color--dark: #6a6c79;
+
+// font
+$base-font-family: Arial, Helvetica, sans-serif;
+$base-font-size-sm: 0.8rem;
+$base-font-size: 1rem;
+$base-font-size-md: 2rem;
+$base-font-size-lg: 3rem;
+$base-font-size-xl: 4rem;

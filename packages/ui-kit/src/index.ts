@@ -1,5 +1,9 @@
 // components
+export * from './components/Header';
 export * from './components/BreadCrumbs';
+export * from './components/Form';
+export * from './components/Input';
+export * from './components/Button';
 
 // assets
 export { default as TickIcon } from './assets/check-solid.svg';

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given \`Form\` component when it is rendered should match snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="form"
+    >
+      <form
+        method="post"
+      >
+        <fieldset>
+          <legend>
+            <h2>
+              Some form
+            </h2>
+          </legend>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</body>
+`;

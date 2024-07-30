@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given \`Header\` component when it is rendered should match snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="header"
+    >
+      <div
+        class="logo"
+      >
+        <div
+          class="logo__image"
+        >
+          <logo.svg />
+        </div>
+        <div
+          class="logo__text"
+        >
+          <span
+            class="logo__text_title"
+          >
+            LUCK TEST
+          </span>
+          <span
+            class="logo__text_slogan"
+          >
+            CHECK YOU LUCK
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

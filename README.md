@@ -18,8 +18,6 @@ npm install
 npm start
 ```
 
-### Then open [http://localhost:3000/](http://localhost:3000/) to see your app.
-
 ---
 
 ### Build for production
@@ -46,4 +44,8 @@ npm test
 
 ---
 
-### Swagger: [http://localhost:5000/swagger](http://localhost:5000/swagger)
+## Links:
+
+- ### Link to development server [http://localhost:3000/](http://localhost:3000/)
+- ### Link to Swagger: [http://localhost:5000/swagger](http://localhost:5000/swagger)
+- ### Link to storybook: [http://localhost:6006/](http://localhost:6006/)

@@ -1,0 +1,31 @@
+@import '../../styles/app.scss';
+
+.input {
+	@include theme-switcher() {
+		label {
+			color: $text-color--light;
+		}
+
+		input {
+			color: $text-color--light;
+			border: 1px solid $border-color--light;
+			background-color: $input-background--light;
+		}
+	}
+
+	label {
+		display: inline-block;
+		min-width: 80px;
+		margin-right: 24px;
+		color: $text-color--dark;
+	}
+
+	input {
+		padding: 8px 12px;
+		color: $text-color--dark;
+		border: 1px solid $border-color--dark;
+		border-radius: 0;
+		outline: 0;
+		background-color: $base-background--dark;
+	}
+}
