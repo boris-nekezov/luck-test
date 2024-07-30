@@ -1,0 +1,36 @@
+@import '@luck-test/ui-kit/src/styles/variables.scss';
+
+.account-page {
+	height: calc(100vh - 195px);
+
+	&__heading {
+		text-align: center;
+	}
+
+	&__container {
+		height: calc(100vh - 326px);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		&_column {
+			text-align: center;
+
+			.form {
+				padding: 3.125rem;
+				margin: 3.125rem;
+
+				label {
+					text-align: right;
+				}
+			}
+		}
+
+		&_separator {
+			display: block;
+			width: 5px;
+			min-height: 100%;
+			background-color: $active-secondary-color--dark;
+		}
+	}
+}

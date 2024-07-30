@@ -1,0 +1,20 @@
+@import '../../styles/app.scss';
+
+.form {
+	@include theme-switcher() {
+		background: $form-background--light;
+	}
+
+	padding: $space-md;
+	margin: $space-md;
+	border-radius: $space-sm;
+	background: $form-background--dark;
+
+	.input {
+		margin-bottom: $space-md;
+	} 
+
+	fieldset {
+		border: 0;
+	}
+}
