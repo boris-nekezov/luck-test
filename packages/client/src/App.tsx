@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import {
-  BrowserRouter,
-  Route,
-  Routes,
-  useNavigate,
-  Navigate,
-  Outlet,
+	BrowserRouter,
+	Route,
+	Routes,
+	useNavigate,
+	Navigate,
+	Outlet,
 } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from '@luck-test/ui-kit';
@@ -24,62 +24,49 @@ import { Header } from '@luck-test/ui-kit';
 
 import './App.scss';
 
-
 function App() {
-  const { userInfo, isAuthenticated } = useAppSelector(selectUser)
-  const dispatch = useAppDispatch();
+	const { userInfo, isAuthenticated } = useAppSelector(selectUser);
+	const dispatch = useAppDispatch();
 
+	useEffect(() => {
+		dispatch(getUserProfile());
+	}, [dispatch]);
 
-  useEffect(() => {
-    dispatch(getUserProfile())
-  }, [dispatch]);
+	return (
+		<div className="App">
+			<BrowserRouter>
+				<Header>
+					<div className="user-info">
+						<h3>
+							{isAuthenticated
+								? `Logged in as ${userInfo?.login}`
+								: `You're not logged in`}
+						</h3>
+					</div>
+					<div className="cta">
+						{userInfo && (
+							<Button type="button" handleClick={() => dispatch(logout())}>
+								Logout
+							</Button>
+						)}
+					</div>
+				</Header>
 
-  return (
-    <div className="App" >
-      <BrowserRouter>
-        <Header>
-          <div className="user-info">
-            <h3>
-              {
-                isAuthenticated ?
-                  `Logged in as ${userInfo?.login}` :
-                  `You're not logged in`
-              }
-            </h3>
-          </div>
-          <div className="cta">
-            {
-              userInfo && (
-                <Button
-                  type='button'
-                  handleClick={() => dispatch(logout())}
-                >Logout</Button>
-              )
+				<Routes>
+					<Route path="/account" element={<AccountPage />} />
 
-            }
-          </div>
-        </Header >
+					<Route element={<PrivateRoutes />}>
+						<Route path="/">
+							<Route index element={<TestsPage />} />
+							<Route path=":testId" element={<TestDetailPage />} />
+						</Route>
+					</Route>
+				</Routes>
+			</BrowserRouter>
 
-        <Routes>
-
-          <Route path='/account' element={<AccountPage />} />
-
-          <Route element={<PrivateRoutes />} >
-
-            <Route path='/'>
-              <Route index element={<TestsPage />} />
-              <Route path=":testId" element={<TestDetailPage />} />
-            </Route>
-
-          </Route>
-
-
-        </Routes>
-      </BrowserRouter>
-
-      <Outlet />
-    </div >
-  );
+			<Outlet />
+		</div>
+	);
 }
 
 export default App;
